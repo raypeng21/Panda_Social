@@ -1,25 +1,39 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import './App.scss';
-import Chat from './Chat/Chat';
-import SideBar from './SideBar/SideBar';
+import Main from './components/Main/Main'
+import SignIn from './components/SignIn/SignIn';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Register from './components/Register/Register';
 
 function App() {
 
-  useEffect(() => {
-    const pusher = new Pusher('739310b287ee5fb66200', {
-      cluster: 'us3'
-    });
 
-    const channel = pusher.subscribe('messages');
-    channel.bind('inserted', (data) => {
-      alert(JSON.stringify(data));
-    });
-  }, [])
+
+
+
   return (
     <div className="App">
       <div className="body">
-        <SideBar />
-        <Chat />
+
+    <Router>
+      <Switch>
+
+        <Route path='/main'>
+          <Main />
+        </Route>
+
+        <Route path='/register'>
+          <Register />
+        </Route>
+
+        <Route path='/'>
+          <SignIn />
+        </Route>
+         
+      </Switch>
+    </Router>
+
+
       </div>
 
     </div>

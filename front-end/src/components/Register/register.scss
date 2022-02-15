@@ -1,0 +1,36 @@
+.register {
+  background-image: url("https://marketplace.canva.com/EAD2962NKnQ/2/0/1600w/canva-rainbow-gradient-pink-and-purple-zoom-virtual-background-_Tcjok-d9b4.jpg");
+  background-size: cover;
+  width: 200vh;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .register_Container {
+    img {
+      width: 100px;
+      margin: 0 0 30px 0;
+    }
+    background-color: azure;
+    width: 400px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  input {
+    margin: 2px;
+  }
+
+  .home_register {
+    margin-top: 30px;
+    background-color: #51c332;
+    width: 160px;
+    height: 30px;
+    margin: 75px auto 5px auto;
+  }
+  .register_back {
+    text-decoration: underline;
+  }
+}
