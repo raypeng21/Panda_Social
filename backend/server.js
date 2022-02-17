@@ -1,13 +1,21 @@
 //importing
 import express from "express";
 import mongoose from "mongoose";
+import dotenv from "dotenv";
+import helmet from "helmet";
+import morgan from "morgan";
 import Messages from "./dbMessages.js";
 import Pusher from "pusher";
 import cors from "cors"
+import userRouter from "./routes/users.js"
+
 
 //app config
 const app = express();
+
 const port = process.env.PORT || 9000;
+
+dotenv.config();
 
 const pusher = new Pusher({
     appId: "1346904",
@@ -20,9 +28,11 @@ const pusher = new Pusher({
 
 
 //middleware
-app.use(express.json());
-
+app.use(express.json());  
+app.use(helmet());
+app.use(morgan("common"));
 app.use(cors());
+app.use("/api/users", userRouter);
 
 // app.use((req,res,next) =>{
 //     res.setHeader("Access-Control-Allow-Origin", "*");
@@ -75,6 +85,7 @@ db.once('open', () => {
 
 //api route
 app.get("/",(req,res) => res.status(200).send("hello world"))     //200's ====> Means OKAY
+
 
 
 app.get('/messages/sync',(req, res) => {
