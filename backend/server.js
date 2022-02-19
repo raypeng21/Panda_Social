@@ -9,6 +9,7 @@ import Pusher from "pusher";
 import cors from "cors"
 import userRouter from "./routes/users.js"
 import authRouter from "./routes/auth.js"
+import postRouter from "./routes/posts.js"
 
 
 //app config
@@ -36,6 +37,7 @@ app.use(cors());
 
 app.use("/api/users", userRouter);
 app.use("/api/auth", authRouter);
+app.use("/api/posts", postRouter);
 
 // app.use((req,res,next) =>{
 //     res.setHeader("Access-Control-Allow-Origin", "*");
