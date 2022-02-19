@@ -8,6 +8,7 @@ import Messages from "./dbMessages.js";
 import Pusher from "pusher";
 import cors from "cors"
 import userRouter from "./routes/users.js"
+import authRouter from "./routes/auth.js"
 
 
 //app config
@@ -32,7 +33,9 @@ app.use(express.json());
 app.use(helmet());
 app.use(morgan("common"));
 app.use(cors());
+
 app.use("/api/users", userRouter);
+app.use("/api/auth", authRouter);
 
 // app.use((req,res,next) =>{
 //     res.setHeader("Access-Control-Allow-Origin", "*");
