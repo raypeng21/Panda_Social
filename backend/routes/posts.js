@@ -1,6 +1,5 @@
 import express from "express";
 import Post from "../models/Post.js";
-import User from "../models/User.js";
 
 var router = express.Router();
 
@@ -91,7 +90,6 @@ router.get("/timeline/all", async (req,res) =>{
 
         res.json(userPosts.concat(...friendPosts));
     }catch(err){
-        console.log(err)
         res.status(500).json(err)
     }
 })

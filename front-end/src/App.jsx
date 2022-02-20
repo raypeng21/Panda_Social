@@ -4,6 +4,7 @@ import Main from './components/Main/Main'
 import SignIn from './components/SignIn/SignIn';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Register from './components/Register/Register';
+import Profile from './components/Profile/Profile';
 
 function App() {
 
@@ -18,7 +19,11 @@ function App() {
     <Router>
       <Switch>
 
-        <Route path='/main'>
+      <Route path='/profile'>
+          <Profile />
+        </Route>
+
+        <Route path='/chat'>
           <Main />
         </Route>
 

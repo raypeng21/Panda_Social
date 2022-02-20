@@ -1,13 +1,14 @@
 .siderbar {
   margin: 0;
   background-color: rgb(190, 190, 190);
-  flex: 0.36;
   display: flex;
   flex-direction: row;
+  flex: 0.1;
 
   .sider_left {
+    width: 45px;
     display: flex;
-    flex: 0.195;
+    flex: 1;
     justify-content: space-between;
     padding: 20px;
     border-right: 1px solid lightgray;
@@ -33,33 +34,6 @@
 
       .sider_left_foot {
         flex: 0.1;
-      }
-    }
-  }
-
-  .sider_right {
-    flex: 0.805;
-    background-color: #e5e5e5;
-    width: 100%;
-    border: 1px solid #f6f6f6;
-
-    .sider_right_search {
-      display: flex;
-      align-items: center;
-      background-color: #e5e5e5;
-      margin: 20px 5px 14px 5px;
-      padding: 5px;
-      height: 30px;
-      width: 95%;
-      border-radius: 20px;
-      .MuiSvgIcon-root {
-        color: lightgrey;
-        padding: 10px;
-      }
-      input {
-        background-color: #e4e3e1;
-        border: none;
-        outline-width: 0; //make the ouline not display
       }
     }
   }

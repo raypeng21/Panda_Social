@@ -7,7 +7,7 @@ function SignIn() {
   return (
     <div className='signin' >
         <div className="signin_Container">
-            <img src="https://logos-download.com/wp-content/uploads/2017/01/WeChat_logo_icon.png" alt="" />
+            <img src="Assets/Panda_Social_logo.png" alt="" />
 
             <input type="text" placeholder='Username'/>
             <input type="password" placeholder='Password'/>

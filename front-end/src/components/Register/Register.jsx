@@ -5,11 +5,13 @@ function Register() {
   return (
     <div className='register' >
         <div className="register_Container">
-            <img src="https://logos-download.com/wp-content/uploads/2017/01/WeChat_logo_icon.png" alt="" />
+            <img src="Assets/Panda_Social_logo.png" alt="" />
 
             <input type="text" placeholder='Username'/>
+            <input type="email" placeholder='Email'/>
             <input type="password" placeholder='Password'/>
-            
+            <input type="password_again" placeholder='Password Again'/>
+
             <button className='home_register'>Register a new account</button>
 
             <Link to = '/'>

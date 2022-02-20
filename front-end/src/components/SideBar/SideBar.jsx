@@ -5,8 +5,7 @@ import ChatBubbleIcon from '@material-ui/icons/ChatBubble';
 import MenuIcon from '@material-ui/icons/Menu';
 import AllInboxIcon from '@material-ui/icons/AllInbox';
 import { Avatar, IconButton } from '@material-ui/core';
-import SideBarChat from '../SidebarChat/SideBarChat';
-import AddBoxIcon from '@material-ui/icons/AddBox';
+
 
 
 function SideBar() {
@@ -45,18 +44,7 @@ function SideBar() {
 
 
 
-        <div className="sider_right">
-            <div className="sider_right_search">
-                <input placeholder = "Search or start new chat" type="text" />
-                <IconButton>                
-                     <AddBoxIcon /> 
-                </IconButton>
-            </div>
-            <SideBarChat />
-            <SideBarChat />
-            <SideBarChat />
 
-        </div>
 
         
         

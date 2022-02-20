@@ -4,6 +4,8 @@ import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon';
 import MicIcon from '@material-ui/icons/Mic';
 import { Avatar, IconButton } from '@material-ui/core';
 import { AttachFile, SearchOutlined } from '@material-ui/icons';
+import SideBarChat from '../SidebarChat/SideBarChat';
+import AddBoxIcon from '@material-ui/icons/AddBox';
 import InsertDriveFileIcon from '@material-ui/icons/InsertDriveFile';
 import FilterCenterFocusIcon from '@material-ui/icons/FilterCenterFocus';
 import LocalPhoneIcon from '@material-ui/icons/LocalPhone';
@@ -33,6 +35,22 @@ function Chat({messages}) {
 
   return (
     <div className='chat'>
+
+        <div className="chat_left">
+            <div className="chat_left_search">
+                <input placeholder = "Search or start new chat" type="text" />
+                <IconButton>                
+                     <AddBoxIcon /> 
+                </IconButton>
+            </div>
+            <SideBarChat />
+            <SideBarChat />
+            <SideBarChat />
+
+        </div>
+
+        <div className="chat_right">
+
         <div className="chat_header">
             <div className="chat_header_info">
                 <h3> Name</h3>
@@ -100,6 +118,12 @@ function Chat({messages}) {
 
 
         </div>
+
+
+        </div>
+
+
+
     </div>
   )
 }

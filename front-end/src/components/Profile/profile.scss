@@ -1,0 +1,33 @@
+.profile {
+  display: grid;
+  place-items: center;
+  height: 100vh;
+  background-color: lightgrey;
+  background-image: url("https://marketplace.canva.com/EAD2962NKnQ/2/0/1600w/canva-rainbow-gradient-pink-and-purple-zoom-virtual-background-_Tcjok-d9b4.jpg");
+  background-size: cover;
+  .body {
+    display: flex;
+    background-color: rgb(206, 206, 206);
+    margin-top: -50px;
+    height: 90vh;
+    width: 150vh;
+    box-shadow: -10px 4px 20px -10px rgba($color: #0a0505, $alpha: 1);
+
+    .profileContainer {
+      background-color: aliceblue;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      .profile_top {
+        display: flex;
+
+        .MuiSvgIcon-root {
+          margin: 10px;
+        }
+        .profile_top_info {
+          margin: 20px;
+        }
+      }
+    }
+  }
+}
