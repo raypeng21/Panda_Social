@@ -1,6 +1,6 @@
 import { Avatar } from '@material-ui/core'
 import React from 'react'
-import Post from '../Posts/Posts'
+import Post from '../Post/Post'
 import SideBar from '../SideBar/SideBar'
 import "./profile.scss"
 

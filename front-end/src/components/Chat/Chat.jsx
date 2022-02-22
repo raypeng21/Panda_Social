@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon';
-import MicIcon from '@material-ui/icons/Mic';
 import { Avatar, IconButton } from '@material-ui/core';
 import { AttachFile, SearchOutlined } from '@material-ui/icons';
 import SideBarChat from '../SidebarChat/SideBarChat';

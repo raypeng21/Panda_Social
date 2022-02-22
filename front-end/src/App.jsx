@@ -5,6 +5,7 @@ import SignIn from './components/SignIn/SignIn';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Register from './components/Register/Register';
 import Profile from './components/Profile/Profile';
+import Feed from './components/Feed/Feed';
 
 function App() {
 
@@ -18,6 +19,10 @@ function App() {
 
     <Router>
       <Switch>
+
+      <Route path='/feed'>
+          <Feed />
+        </Route>
 
       <Route path='/profile'>
           <Profile />
