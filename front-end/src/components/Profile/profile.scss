@@ -17,7 +17,8 @@
       background-color: aliceblue;
       width: 100%;
       display: flex;
-      justify-content: center;
+      flex-direction: column;
+
       .profile_top {
         display: flex;
 
@@ -27,6 +28,11 @@
         .profile_top_info {
           margin: 20px;
         }
+      }
+
+      .profile_bottom{
+        overflow: scroll;
+
       }
     }
   }

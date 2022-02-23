@@ -17,19 +17,6 @@ function Chat({messages}) {
 
     const[input,setInput] = useState("")
 
-    const sendMessage = async(e) => {
-        e.preventDefault();
-
-        await axios.post("/messages/new", {
-            message: input,
-            name: "Demo",
-            timestamp: "Just now",
-            received: true,
-        });
-
-        setInput("");
-
-    }
 
 
   return (
@@ -109,7 +96,7 @@ function Chat({messages}) {
 
                 type="text" />
 
-                <button onClick={sendMessage} type = "submit">
+                <button type = "submit">
                     Send
                 </button>
             </form>

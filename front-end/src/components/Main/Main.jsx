@@ -9,14 +9,14 @@ function Main() {
     
   const [messages, setMessages] = useState([]);
 
-  useEffect(() => {
+  // useEffect(() => {
 
-    axios.get("/messages/sync")
-        .then((response) => {
-        setMessages(response.data);
-      })
+  //   axios.get("/messages/sync")
+  //       .then((response) => {
+  //       setMessages(response.data);
+  //     })
     
-  }, []);
+  // }, []);
 
 
 
