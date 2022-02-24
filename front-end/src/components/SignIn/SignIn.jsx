@@ -1,24 +1,54 @@
-import React from 'react';
+import React ,{useContext, useRef}from 'react';
 import './signin.scss';
 import { Link } from 'react-router-dom';
+import{signinCall} from "../../apiCalls.js";
+import { AuthContext } from '../../context/AuthContext';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 
 function SignIn() {
+
+  const email = useRef();
+  const password = useRef();
+  const {user, isFetching, error, dispatch} = useContext(AuthContext);
+
+  const handleClick =(e) => {
+    e.preventDefault();
+    signinCall({email: email.current.value, password:password.current.value}, dispatch)
+
+  };
+
+  console.log(user)
   return (
     <div className='signin' >
         <div className="signin_Container">
             <img src="Assets/Panda_Social_logo.png" alt="" />
 
-            <input type="text" placeholder='Username'/>
-            <input type="password" placeholder='Password'/>
 
-            
-            <button className='home_singnin'>Sign In</button>
+            <form className='signin_box' onSubmit={handleClick}>
 
-            <Link to = "./register">
-            <button className='home_register'>Register a new account</button>
+              <input type="email" required placeholder='Email' ref= {email} />
+              <input 
+              type="password" 
+              required 
+              minLength={6}
+              placeholder='Password' 
+              ref= {password}/>
 
-            </Link>
+              
+
+              <button className='home_singnin' 
+              type = "submit" 
+              disabled = {isFetching}
+              >{ isFetching ? <CircularProgress color='green' size="20px"/> : "Sign In" }</button>
+
+              <Link to = "./register">
+              <button className='home_register' disabled = {isFetching}>{ isFetching ? <CircularProgress color='green' size="20px"/> : "Register a new account" }</button>
+
+              </Link>
+
+            </form>
+
 
         </div>
 

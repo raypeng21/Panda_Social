@@ -3,7 +3,7 @@
   place-items: center;
   height: 100vh;
   background-color: lightgrey;
-  background-image: url("https://marketplace.canva.com/EAD2962NKnQ/2/0/1600w/canva-rainbow-gradient-pink-and-purple-zoom-virtual-background-_Tcjok-d9b4.jpg");
+  background-image: url("../../../public/Assets/256190.jpg");
   background-size: cover;
   .body {
     display: flex;
@@ -18,21 +18,58 @@
       width: 100%;
       display: flex;
       flex-direction: column;
+      overflow: scroll;
 
-      .profile_top {
+
+      .profile_Name_Card {
         display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-left: auto;
+        margin-right: auto;
+        width:100%;
 
-        .MuiSvgIcon-root {
-          margin: 10px;
+        .profileCoverImg{
+          top:0;
+          height: 250px;
+          object-fit: cover;
+          position: relative;
         }
-        .profile_top_info {
-          margin: 20px;
+        .profileProfileImg{
+          position: relative;
+          width: 200px;
+          height: 200px;
+          margin-top: 50px;
+          margin-bottom: 30px;
+          object-fit: cover;
+          
         }
+        .profile_info{
+          justify-content: center;
+          align-items: center;
+          display: flex;
+          flex-direction: column;
+          margin-bottom: 10px;
+        }
+        .profile_banner{
+          position: relative;
+          display: flex;
+          .profile_share{
+            flex:0.5;
+          }
+          .profile_top_info {
+            flex:0.5;
+            margin: 20px;
+          }
+
+        }
+
       }
 
       .profile_bottom{
-        overflow: scroll;
-
+        margin-left: 50px;
+        margin-right: 50px;
       }
     }
   }

@@ -20,26 +20,57 @@
       margin: 0 0 30px 0;
     }
 
-    input {
-      margin: 2px;
-      width: 200px;
-      height: 30px;
-      font-size: 18px;
-      font-weight: 700;
+    .signin_box{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      input {
+        margin: 2px;
+        width: 200px;
+        height: 30px;
+        font-size: 18px;
+        font-weight: 700;
+      }
+      .home_singnin {
+        background-color: lightgrey;
+        width: 200px;
+        height: 50px;
+        margin: 25px auto 5px auto;
+        font-weight: 900;
+        cursor: pointer;
+
+        &:hover{
+          background-color: rgb(119, 116, 116);
+
+
+        &:disabled{
+          cursor: not-allowed;
+        }
+        }
+      }
+      .home_register {
+        background-color: #51c332;
+        width: 200px;
+        height: 50px;
+        margin: 5px auto 5px auto;
+        font-weight: 900;
+        cursor: pointer;
+
+        &:hover{
+          background-color:  #3b8b25;
+
+        }
+
+        &:disabled{
+          cursor: not-allowed;
+        }
+      }
+
+
     }
-    .home_singnin {
-      background-color: lightgrey;
-      width: 200px;
-      height: 50px;
-      margin: 25px auto 5px auto;
-      font-weight: 900;
-    }
-    .home_register {
-      background-color: #51c332;
-      width: 200px;
-      height: 50px;
-      margin: 5px auto 5px auto;
-      font-weight: 900;
-    }
+
+
+
   }
 }

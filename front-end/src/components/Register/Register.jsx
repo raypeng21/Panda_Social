@@ -14,7 +14,7 @@ function Register() {
 
             <button className='home_register'>Register a new account</button>
 
-            <Link to = '/'>
+            <Link to = '/signin'>
             <p className='register_back'>Back to Sign in</p>
 
             </Link>
