@@ -47,9 +47,7 @@ function Profile() {
 
               </div>
               <div className="profile_banner">
-                <div className="profile_share">
-                  <Share />
-                </div>
+
 
                 <div className="profile_top_info">
                   <h2>User Information:</h2>

@@ -3,7 +3,17 @@ import AuthReducer from "./AuthReducer";
 
 //initial
 const INITIAL_STATE = { 
-    user:null,
+    // user:{
+    //     _id: "6216f1b8224393fe5b9e4558",
+    //     username:"Lily",
+    //     email:"lily@gmail.com",
+    //     profilePicture:"https://www.cheatsheet.com/wp-content/uploads/2019/01/Aubrey-Anderson-...",
+    //     coverPicture:"",
+    //     followers:[],
+    //     following:[],
+    //     isAdmin:false,
+    // },
+    user: null,
     isFetching: false,
     error: false 
 };

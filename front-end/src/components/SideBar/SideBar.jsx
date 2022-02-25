@@ -1,34 +1,63 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import "./sidebar.scss"
 import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
 import ChatBubbleIcon from '@material-ui/icons/ChatBubble';
 import MenuIcon from '@material-ui/icons/Menu';
 import AllInboxIcon from '@material-ui/icons/AllInbox';
 import { Avatar, IconButton } from '@material-ui/core';
-
-
+import {useHistory} from "react-router-dom";
+import { useState, useEffect} from "react";
+import { AuthContext } from '../../context/AuthContext';
+import { Link } from 'react-router-dom';
 
 function SideBar() {
+
+    const {user} = useContext(AuthContext)
+    const histroy = useHistory();
+
+
+    const handleCircle = (e) => {
+        e.preventDefault();
+        histroy.push("/")
+    }
+
+    const handleFriends = (e) => {
+        e.preventDefault();
+        histroy.push("/")
+    }
+
+    const handleChat = (e) => {
+        e.preventDefault();
+        histroy.push("/chat")
+    }
+
+
+
   return (
     <div className='siderbar'>
         <div className="sider_left">
             <div className="sider_left_top">
-            <Avatar variant="square" src = "https://www.cheatsheet.com/wp-content/uploads/2019/01/Aubrey-Anderson-Emmons-net-worth-2018-photo-GettyImages-1067034090.jpg"/>
+            <Link to = {`/profile/${user.username}`}>
+                <Avatar variant="square" src = {user.profilePicture}/>
+
+            </Link>
             </div>
 
             <div className="sider_left_bottom">
 
-            <IconButton>
-                <ChatBubbleIcon />
+            <IconButton onClick={handleCircle}>
+                <AllInboxIcon />
             </IconButton>
 
-            <IconButton>
+            <IconButton onClick={handleFriends}>
                 <PeopleAltIcon />
             </IconButton>
 
-            <IconButton>
-                <AllInboxIcon />
+
+            <IconButton onClick={handleChat}>
+                <ChatBubbleIcon />
             </IconButton>
+
             </div>
 
             <div className="sider_left_foot">

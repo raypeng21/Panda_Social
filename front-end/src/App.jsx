@@ -20,11 +20,11 @@ function App() {
       <Switch>
 
       <Route exact path='/'>
-        {user ? <Main/> :<Register /> }
+        {user ? <FriendCircle/> :<SignIn /> }
         </Route>
 
-        <Route path='/friendcircle'>
-        <FriendCircle/>
+        <Route path='/chat'>
+        <Main/>
         </Route>
 
         <Route path='/signin'>
@@ -33,7 +33,7 @@ function App() {
         </Route>
 
         <Route path='/register'>
-        {user ? <Redirect to = "/" /> :<Register /> }
+          {user ? <Redirect to = "/" /> :<Register /> }
         </Route>
         
         <Route path="/profile/:username">

@@ -1,16 +1,23 @@
 
 import "./posts.css";
 import { MoreVert } from "@material-ui/icons";
-import { useState, useEffect} from "react";
+import { useState, useEffect, useContext} from "react";
 import axios from "axios";
 import {format} from "timeago.js";
 import {Link} from "react-router-dom";
+import { AuthContext } from '../../context/AuthContext';
 
 export default function Post({post}) {
   const [like,setLike] = useState(post.likes.length)
   const [isLiked,setIsLiked] = useState(false)
   const [user, setUser] = useState({});
+  const {user : currentUser } = useContext(AuthContext)
 
+  useEffect(() => {                       //check the db is this post been liked before or not
+    setIsLiked(post.likes.includes(currentUser._id))
+
+  }, [currentUser._id, post.likes])
+  
   useEffect(() => {
       const fetchUser = async () =>{
           const res = await axios.get(`/users?userId=${post.userId}`);
@@ -23,6 +30,11 @@ export default function Post({post}) {
 
 
   const likeHandler =()=>{
+    try {
+      axios.put("/posts/" + post._id + "/likes", {userId: currentUser._id})
+    } catch (err) {
+      
+    }
     setLike(isLiked ? like-1 : like+1)
     setIsLiked(!isLiked)
   }
