@@ -14,9 +14,9 @@ export default function Post({post}) {
   const {user : currentUser } = useContext(AuthContext)
 
   useEffect(() => {                       //check the db is this post been liked before or not
-    setIsLiked(post.likes.includes(currentUser._id))
+    setIsLiked(post.likes.includes(currentUser?._id))
 
-  }, [currentUser._id, post.likes])
+  }, [currentUser?._id, post.likes])
   
   useEffect(() => {
       const fetchUser = async () =>{
@@ -62,7 +62,8 @@ export default function Post({post}) {
         </div>
         <div className="postCenter">
           <span className="postText">{post.desc}</span>
-          <img className="postImg" src={post.img} alt="" />
+          <img className="postImg" src={post.img || `http://localhost:9000/images/${post.img}`}  alt="" />
+          {/* <img className="postImg" src={"http://localhost:9000/images/" + post.img} alt="" /> */}
         </div>
         <div className="postBottom">
           <div className="postBottomLeft">

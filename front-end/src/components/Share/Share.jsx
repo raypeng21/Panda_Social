@@ -1,5 +1,5 @@
 import "./share.css";
-import {PermMedia, Label,Room, EmojiEmotions} from "@material-ui/icons"
+import {PermMedia, Label,Room, EmojiEmotions, Cancel} from "@material-ui/icons"
 import { useContext,useRef, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import axios from "axios";
@@ -9,20 +9,29 @@ export default function Share() {
   const desc = useRef();
   const [file, setFile] = useState(null);
 
+  
   const submitHandler = async (e) => {
     e.preventDefault();
     const newPost = {
       userId: user._id,
       desc: desc.current.value,
-
+    };
+    if (file) {
+      const data = new FormData();
+      const fileName = Date.now() + file.name;
+      data.append("name", fileName);
+      data.append("file", file);
+      newPost.img = fileName;
+      console.log(newPost);
+      try {
+        await axios.post("/upload", data);
+      } catch (err) {}
     }
-
     try {
-      await axios.post("/posts", newPost)
-    } catch (err) {
-      
-    }
-  }
+      await axios.post("/posts", newPost);
+      window.location.reload();
+    } catch (err) {}
+  };
 
   return (
     <div className="share">
@@ -36,6 +45,12 @@ export default function Share() {
           />
         </div>
         <hr className="shareHr"/>
+        {file && (
+          <div className="shareImgContainer">
+            <img className="shareImg" src={URL.createObjectURL(file)} alt="" />
+            <Cancel className="shareCancel"  onClick ={() => setFile(null)}/>
+          </div>
+        )}
         <form className="shareBottom" onSubmit={submitHandler}>
             <div className="shareOptions">
                 <label htmlFor = "file" className="shareOption">
@@ -45,6 +60,7 @@ export default function Share() {
                     <input 
                     type="file" 
                     id = "file" 
+                    name = "file"
                     style = {{display: "none"}}
                     accept= ".png, .jpeg, .jpg" 
                     onChange={(e) =>setFile(e.target.files[0])}/>  

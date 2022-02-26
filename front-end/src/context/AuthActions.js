@@ -14,3 +14,13 @@ export const LoginFailure = (error) => ({
     package: error
 });
 
+export const Follow = (userId) => ({
+    type : "FOLLOW",
+    package : userId,
+})
+
+export const UnFollow = (userId) => ({
+    type : "UNFOLLOW",
+    package : userId,
+})
+

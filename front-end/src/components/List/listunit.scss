@@ -1,0 +1,33 @@
+.ListUnit{
+    border: 1px solid black;
+
+    .ListUnit_frame{
+        height: fit-content;
+        display: flex;
+        margin: 15px 20px 15px 20px;
+        
+        .ListUnit_profilePicture{
+            margin: 3px;
+            img{
+                width: 40px;
+                height: 40px;
+            }
+        }
+        .ListUnit_info{
+            display: flex;
+            flex-direction: column;
+            margin-left: 20px;
+            margin-right: 20px;
+            
+        }
+
+
+
+
+        .Listunit_operation{
+            display: flex;
+            
+
+        }
+    }
+}

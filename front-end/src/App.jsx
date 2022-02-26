@@ -8,10 +8,12 @@ import Profile from './components/Profile/Profile';
 import Feed from './components/Feed/Feed';
 import FriendCircle from './components/FriendCircle/FriendCircle';
 import { AuthContext } from './context/AuthContext';
+import FriendList from './components/FriendsList/FriendList';
 function App() {
 
 
   const{user} = useContext(AuthContext)
+
   return (
     <div className="App">
       <div className="body">
@@ -20,7 +22,13 @@ function App() {
       <Switch>
 
       <Route exact path='/'>
-        {user ? <FriendCircle/> :<SignIn /> }
+        <FriendCircle />
+        {/* {user ? <FriendCircle/> :<SignIn /> } */}
+        </Route>
+
+        <Route path='/friendlist'>
+        {/* {user ? <FriendList /> :<SignIn /> } */}
+        <FriendList /> 
         </Route>
 
         <Route path='/chat'>
@@ -30,6 +38,7 @@ function App() {
         <Route path='/signin'>
 
           {user ? <Redirect to = "/" /> :<SignIn /> }
+          
         </Route>
 
         <Route path='/register'>

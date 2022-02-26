@@ -9,7 +9,13 @@ import cors from "cors"
 import userRouter from "./routes/users.js"
 import authRouter from "./routes/auth.js"
 import postRouter from "./routes/posts.js"
+import multer from "multer";
+import path from "path";
+import {fileURLToPath} from 'url';
 
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 //app config
 const app = express();
@@ -17,6 +23,7 @@ const app = express();
 const port = process.env.PORT || 9000;
 
 // dotenv.config();
+app.use("/images", express.static(path.join(__dirname, "public/images")));
 
 
 
@@ -26,6 +33,25 @@ app.use(express.json());
 app.use(helmet());
 app.use(morgan("common"));
 app.use(cors());
+
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+      cb(null, "public/images");
+    },
+    filename: (req, file, cb) => {
+      cb(null, req.body.name);
+    },
+  });
+
+const upload = multer({ storage: storage });
+app.post("/api/upload", upload.single("file"), (req, res) => {
+  try {
+    return res.status(200).json("File uploded successfully");
+  } catch (error) {
+    console.error(error);
+  }
+});
 
 app.use("/api/users", userRouter);
 app.use("/api/auth", authRouter);

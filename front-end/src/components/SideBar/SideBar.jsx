@@ -23,7 +23,7 @@ function SideBar() {
 
     const handleFriends = (e) => {
         e.preventDefault();
-        histroy.push("/")
+        histroy.push("/friendlist")
     }
 
     const handleChat = (e) => {
@@ -37,8 +37,8 @@ function SideBar() {
     <div className='siderbar'>
         <div className="sider_left">
             <div className="sider_left_top">
-            <Link to = {`/profile/${user.username}`}>
-                <Avatar variant="square" src = {user.profilePicture}/>
+            <Link to = {`/profile/${user?.username}`}>
+                <Avatar variant="square" src = {user.profilePicture || "/assets/images/person/noAvatar.png"}/>
 
             </Link>
             </div>
