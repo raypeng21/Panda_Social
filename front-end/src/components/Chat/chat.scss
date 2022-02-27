@@ -61,6 +61,7 @@
       background-color: #f5f5f5;
       padding: 30px;
       overflow-y: scroll;
+      overflow-x: hidden;
 
       .chat_message {
         position: relative;
@@ -68,7 +69,7 @@
         padding: 10px;
         width: fit-content;
         border-radius: 10px;
-        background-color: #ffffff;
+        background-color: rgb(190, 189, 189);
         margin-bottom: 30px;
 
         .chat_name {
@@ -143,6 +144,17 @@
           }
         }
       }
+
+
+    }
+    .OpentoStart{
+      font-size: 30px;
+      font-weight: 500;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 200px;
+      color: grey;
     }
   }
 }

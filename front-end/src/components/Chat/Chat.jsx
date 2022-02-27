@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React, { useEffect, useContext, useState } from 'react'
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon';
-import { Avatar, IconButton } from '@material-ui/core';
+import {IconButton } from '@material-ui/core';
 import { AttachFile, SearchOutlined } from '@material-ui/icons';
 import SideBarChat from '../SidebarChat/SideBarChat';
 import AddBoxIcon from '@material-ui/icons/AddBox';
@@ -9,15 +9,78 @@ import InsertDriveFileIcon from '@material-ui/icons/InsertDriveFile';
 import FilterCenterFocusIcon from '@material-ui/icons/FilterCenterFocus';
 import LocalPhoneIcon from '@material-ui/icons/LocalPhone';
 import VideocamIcon from '@material-ui/icons/Videocam';
-import axios from '../../axios';
+import axios from 'axios';
 import "./chat.scss"
+import { AuthContext } from '../../context/AuthContext';
+import {format} from "timeago.js";
+import { useRef } from 'react';
 
-function Chat({messages}) {
 
+function Chat() {
+    
+    const {user} = useContext(AuthContext)
 
+    const[conversations,setconversations] = useState([])
+    const[currentChat,setcurrentChat] = useState(null)
+    const[messages,setmessages] = useState([])
     const[input,setInput] = useState("")
 
+    const scrollRef = useRef();
+    
+    useEffect(() => {
+        const getConversations = async () =>{
+            try {
+                const res = await axios.get("conversations/" + user?._id)
+                setconversations(res.data)
+            } catch (err) {
+                console.log(err)
+            }
+        }
 
+        getConversations();
+
+
+    }, [user._id])
+    
+
+
+    useEffect(() => {
+        const getMessages = async () => {
+            try {
+                const res = await axios.get("/messages/" + currentChat?._id)
+                setmessages(res.data)
+            } catch (err) {
+                console.log(err)
+            }
+        };
+
+        getMessages();
+    },[currentChat])
+
+
+    useEffect(() => {
+      scrollRef.current?.scrollIntoView({behavior: "smooth"})
+    
+
+    }, [messages])
+    
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const message = {
+            sender: user._id,
+            text: input,
+            conversationId : currentChat._id,
+        };
+
+        try {
+            const res = await axios.post("/messages", message)
+            setmessages([...messages, res.data])
+            setInput("")
+        } catch (err) {
+            console.log(err)
+        }
+    };
 
   return (
     <div className='chat'>
@@ -29,18 +92,24 @@ function Chat({messages}) {
                      <AddBoxIcon /> 
                 </IconButton>
             </div>
-            <SideBarChat />
-            <SideBarChat />
-            <SideBarChat />
+
+            {conversations.map((c) => (
+                <div onClick={() => setcurrentChat(c)}>
+                <SideBarChat conversations = {c} currentUser = {user} />
+                </div>
+            ))}
+
 
         </div>
+        
 
         <div className="chat_right">
-
+        {currentChat ? (
+        <>
                 <div className="chat_header">
                     <div className="chat_header_info">
                         <img src={"/assets/images/person/noAvatar.png"} alt="" />
-                        <h3> Name</h3>
+                        <h3> Chat</h3>
                     </div>
 
                     <div className="chat_header_right">
@@ -61,14 +130,17 @@ function Chat({messages}) {
                 <div className="chat_body">
 
                     {messages.map((message) => (
-                    <div className={`chat_message ${message.received && 'chat_receiver'}`}>
-                    <span className='chat_name'>{message.name}</span>
-                    {message.message}
+                    <div 
+                    ref ={scrollRef} 
+                    className={`chat_message ${message.sender ===user._id && 'chat_receiver'}`}>
+                        <span className='chat_name'>{message.sender}</span>
+                            {message.text}
                     
-                    <span className='chat_time'>
-                        {message.timestamp}
-                    </span>
-                </div>))}
+                        <span className='chat_time'>
+                            {format(message.createdAt)}
+                        </span>
+                    </div>
+                ))}
                 </div>
 
                 <div className="chat_foot">
@@ -97,14 +169,14 @@ function Chat({messages}) {
                         placeholder = "Please Enter your message here"
                         type="text" />
 
-                        <button type = "submit">
+                        <button onClick={handleSubmit} type= "submit">
                             Send
                         </button>
                     </form>
 
 
 
-                </div>
+                </div></>) : (<span className='OpentoStart'>Open a conversation to start chat.</span>)}
 
 
         </div>
