@@ -16,3 +16,16 @@ export const signinCall = async (userCredential, dispatch) => {
 
     }
 }
+
+
+export const signoutCall = async (dispatch) => {
+
+    try{
+
+        dispatch({type: "LOGOUT"})
+
+    }catch(err){
+
+        console.log(err)
+    }
+}

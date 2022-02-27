@@ -1,14 +1,20 @@
-import { Avatar } from '@material-ui/core'
 import React from 'react'
 import "./sidebarchat.scss"
+import { Link } from 'react-router-dom';
 
-function SideBarChat() {
+function SideBarChat( ) {
+
+
+
   return (
     <div className='sidebarChat' >
-        <Avatar />
-        <div className="sidebarChat_info">
-            <h3>Name</h3>
-            <h4>Chathistroy</h4>
+            <img className='sidebarChat_img ' src={"/assets/images/person/noAvatar.png"} alt="" />
+
+
+
+        <div className="ListUnit_info">
+            <h5>Lily</h5>
+            <span>Hello Lily, do you ...</span>
 
         </div>
 

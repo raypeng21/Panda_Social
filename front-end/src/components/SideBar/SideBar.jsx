@@ -6,15 +6,22 @@ import MenuIcon from '@material-ui/icons/Menu';
 import AllInboxIcon from '@material-ui/icons/AllInbox';
 import { Avatar, IconButton } from '@material-ui/core';
 import {useHistory} from "react-router-dom";
-import { useState, useEffect} from "react";
 import { AuthContext } from '../../context/AuthContext';
 import { Link } from 'react-router-dom';
+import {signoutCall} from "../../apiCalls.js";
+
 
 function SideBar() {
 
-    const {user} = useContext(AuthContext)
+    const {user,dispatch} = useContext(AuthContext)
     const histroy = useHistory();
 
+
+    const signout = (e) => {
+        e.preventDefault();
+        signoutCall(dispatch)
+
+    }
 
     const handleCircle = (e) => {
         e.preventDefault();
@@ -62,8 +69,8 @@ function SideBar() {
 
             <div className="sider_left_foot">
 
-            <IconButton>
-                <MenuIcon />
+            <IconButton onClick={signout}>
+                <MenuIcon /> Log Out
             </IconButton>
 
             </div>

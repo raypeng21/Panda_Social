@@ -10,7 +10,7 @@ function SignIn() {
 
   const email = useRef();
   const password = useRef();
-  const {user, isFetching, error, dispatch} = useContext(AuthContext);
+  const {isFetching, dispatch} = useContext(AuthContext);
 
   const handleClick =(e) => {
     e.preventDefault();
@@ -18,7 +18,6 @@ function SignIn() {
 
   };
 
-  console.log(user)
   return (
     <div className='signin' >
         <div className="signin_Container">

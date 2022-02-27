@@ -37,73 +37,74 @@ function Chat({messages}) {
 
         <div className="chat_right">
 
-        <div className="chat_header">
-            <div className="chat_header_info">
-                <h3> Name</h3>
-            </div>
+                <div className="chat_header">
+                    <div className="chat_header_info">
+                        <img src={"/assets/images/person/noAvatar.png"} alt="" />
+                        <h3> Name</h3>
+                    </div>
 
-            <div className="chat_header_right">
-                <IconButton>
-                    <SearchOutlined />
-                </IconButton>
+                    <div className="chat_header_right">
+                        <IconButton>
+                            <SearchOutlined />
+                        </IconButton>
 
-                <IconButton>
-                    <AttachFile />
-                </IconButton>
+                        <IconButton>
+                            <AttachFile />
+                        </IconButton>
 
-                <IconButton>
-                    <MoreVertIcon />
-                </IconButton>
-            </div>
-        </div>
-
-        <div className="chat_body">
-
-            {messages.map((message) => (
-            <div className={`chat_message ${message.received && 'chat_receiver'}`}>
-            <span className='chat_name'>{message.name}</span>
-            {message.message}
-            
-            <span className='chat_time'>
-                {message.timestamp}
-            </span>
-        </div>))}
-        </div>
-
-        <div className="chat_foot">
-            <div className="chat_foot_top">
-                <div className="chat_foot_top_left">
-                <InsertEmoticonIcon />
-                <InsertDriveFileIcon />
-                <FilterCenterFocusIcon />
+                        <IconButton>
+                            <MoreVertIcon />
+                        </IconButton>
+                    </div>
                 </div>
 
-                <div className="chat_foot_top_right">
-                <LocalPhoneIcon />
-                <VideocamIcon />
+                <div className="chat_body">
 
+                    {messages.map((message) => (
+                    <div className={`chat_message ${message.received && 'chat_receiver'}`}>
+                    <span className='chat_name'>{message.name}</span>
+                    {message.message}
+                    
+                    <span className='chat_time'>
+                        {message.timestamp}
+                    </span>
+                </div>))}
                 </div>
 
+                <div className="chat_foot">
+                    <div className="chat_foot_top">
+                        <div className="chat_foot_top_left">
+                        <InsertEmoticonIcon />
+                        <InsertDriveFileIcon />
+                        <FilterCenterFocusIcon />
+                        </div>
+
+                        <div className="chat_foot_top_right">
+                        <LocalPhoneIcon />
+                        <VideocamIcon />
+
+                        </div>
 
 
 
-            </div>
 
-            <form className='chat_foot_textbox'>
-            <textarea
-                value= {input}
-                onChange = {(e) => setInput(e.target.value)}
+                    </div>
 
-                type="text" />
+                    <form className='chat_foot_textbox'>
+                    <textarea
+                        value= {input}
+                        onChange = {(e) => setInput(e.target.value)}
+                        placeholder = "Please Enter your message here"
+                        type="text" />
 
-                <button type = "submit">
-                    Send
-                </button>
-            </form>
+                        <button type = "submit">
+                            Send
+                        </button>
+                    </form>
 
 
 
-        </div>
+                </div>
 
 
         </div>

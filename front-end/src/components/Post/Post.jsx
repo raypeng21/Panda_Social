@@ -62,7 +62,7 @@ export default function Post({post}) {
         </div>
         <div className="postCenter">
           <span className="postText">{post.desc}</span>
-          <img className="postImg" src={post.img || `http://localhost:9000/images/${post.img}`}  alt="" />
+          <img className="postImg" src={`http://localhost:9000/images/${post.img}`}  alt="" />
           {/* <img className="postImg" src={"http://localhost:9000/images/" + post.img} alt="" /> */}
         </div>
         <div className="postBottom">

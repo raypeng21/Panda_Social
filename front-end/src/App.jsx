@@ -5,7 +5,6 @@ import SignIn from './components/SignIn/SignIn';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import Register from './components/Register/Register';
 import Profile from './components/Profile/Profile';
-import Feed from './components/Feed/Feed';
 import FriendCircle from './components/FriendCircle/FriendCircle';
 import { AuthContext } from './context/AuthContext';
 import FriendList from './components/FriendsList/FriendList';
@@ -13,7 +12,6 @@ function App() {
 
 
   const{user} = useContext(AuthContext)
-
   return (
     <div className="App">
       <div className="body">
@@ -22,13 +20,12 @@ function App() {
       <Switch>
 
       <Route exact path='/'>
-        <FriendCircle />
-        {/* {user ? <FriendCircle/> :<SignIn /> } */}
+        
+        {user ? <FriendCircle/> :<SignIn /> }
         </Route>
 
         <Route path='/friendlist'>
-        {/* {user ? <FriendList /> :<SignIn /> } */}
-        <FriendList /> 
+        {user ? <FriendList /> :<SignIn /> }
         </Route>
 
         <Route path='/chat'>
@@ -38,7 +35,6 @@ function App() {
         <Route path='/signin'>
 
           {user ? <Redirect to = "/" /> :<SignIn /> }
-          
         </Route>
 
         <Route path='/register'>

@@ -23,6 +23,16 @@ const AUthReducer = (state, action) =>{
                 error:action.package,
             };
 
+
+        case "LOGOUT":
+            return{
+                user:null,
+                isFetching: false,
+                error:action.package,
+            };
+    
+            
+
             case "FOLLOW":
                 return{
                     ...state,
