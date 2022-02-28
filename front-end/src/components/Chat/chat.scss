@@ -43,7 +43,7 @@
       border-bottom: 1px solid lightgrey;
 
       .chat_header_info {
-        flex: 1;
+        flex: 0.75;
         padding: 15px;
         display: flex;
         align-items: center;
@@ -52,6 +52,24 @@
           width: 50px;
           height: 50px;
           margin: 0 30px 0 30px;
+          object-fit: cover;
+
+        }
+      }
+
+
+      .chat_header_right {
+        flex: 0.25;
+        padding: 15px;
+        display: flex;
+        align-items: center;
+
+        img{
+          width: 50px;
+          height: 50px;
+          margin: 0 30px 0 30px;
+          object-fit: cover;
+
         }
       }
     }
@@ -63,30 +81,7 @@
       overflow-y: scroll;
       overflow-x: hidden;
 
-      .chat_message {
-        position: relative;
-        font-size: 16px;
-        padding: 10px;
-        width: fit-content;
-        border-radius: 10px;
-        background-color: rgb(190, 189, 189);
-        margin-bottom: 30px;
 
-        .chat_name {
-          position: absolute;
-          top: -15px;
-          font-weight: 800;
-          font-size: xx-small;
-        }
-        .chat_time {
-          font-size: xx-small;
-        }
-      }
-
-      .chat_receiver {
-        margin-left: auto;
-        background-color: #a3ef73;
-      }
     }
 
     .chat_foot {

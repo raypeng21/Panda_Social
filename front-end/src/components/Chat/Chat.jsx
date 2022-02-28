@@ -12,8 +12,8 @@ import VideocamIcon from '@material-ui/icons/Videocam';
 import axios from 'axios';
 import "./chat.scss"
 import { AuthContext } from '../../context/AuthContext';
-import {format} from "timeago.js";
 import { useRef } from 'react';
+import Message from '../Message/Message';
 
 
 function Chat() {
@@ -22,6 +22,8 @@ function Chat() {
 
     const[conversations,setconversations] = useState([])
     const[currentChat,setcurrentChat] = useState(null)
+    const[currentChatUser,setcurrentChatUser] = useState(null)
+
     const[messages,setmessages] = useState([])
     const[input,setInput] = useState("")
 
@@ -38,8 +40,7 @@ function Chat() {
         }
 
         getConversations();
-
-
+        // console.log(conversations)
     }, [user._id])
     
 
@@ -55,6 +56,7 @@ function Chat() {
         };
 
         getMessages();
+        console.log(currentChat)
     },[currentChat])
 
 
@@ -82,6 +84,23 @@ function Chat() {
         }
     };
 
+
+    useEffect(() => {
+        const friendId = currentChat?.members.find((m)=>  m !== user?._id);
+  
+        const getUser = async () => {
+          try {
+            const res = await axios("/users?userId=" + friendId)
+            setcurrentChatUser(res.data);
+          } catch (err) {
+            console.log(err)
+          }
+        }
+  
+        getUser();
+      }, [currentChat, user._id])
+
+
   return (
     <div className='chat'>
 
@@ -108,11 +127,45 @@ function Chat() {
         <>
                 <div className="chat_header">
                     <div className="chat_header_info">
-                        <img src={"/assets/images/person/noAvatar.png"} alt="" />
-                        <h3> Chat</h3>
+                        <img src={currentChatUser.profilePicture||"/assets/images/person/noAvatar.png"} alt="" />
+                        <h3> {currentChatUser.username}</h3>
                     </div>
 
                     <div className="chat_header_right">
+                        <h3> {user.username}</h3>
+                        <img src={user.profilePicture||"/assets/images/person/noAvatar.png"} alt="" />
+
+                    </div>
+                </div>
+
+                <div className="chat_body">
+
+                    {messages.map((message) => (
+                    <div ref ={scrollRef}>
+                        <Message message={message} />
+                    </div>
+
+                ))}
+                </div>
+
+                <div className="chat_foot">
+                    <div className="chat_foot_top">
+                        <div className="chat_foot_top_left">
+                        </div>
+
+                        <div className="chat_foot_top_right">
+                        <IconButton>
+                        <InsertEmoticonIcon />
+                        </IconButton>
+
+                        <IconButton>
+                        <InsertDriveFileIcon />
+                        </IconButton>
+
+                        <IconButton>
+                        <FilterCenterFocusIcon />
+                        </IconButton>
+
                         <IconButton>
                             <SearchOutlined />
                         </IconButton>
@@ -124,36 +177,6 @@ function Chat() {
                         <IconButton>
                             <MoreVertIcon />
                         </IconButton>
-                    </div>
-                </div>
-
-                <div className="chat_body">
-
-                    {messages.map((message) => (
-                    <div 
-                    ref ={scrollRef} 
-                    className={`chat_message ${message.sender ===user._id && 'chat_receiver'}`}>
-                        <span className='chat_name'>{message.sender}</span>
-                            {message.text}
-                    
-                        <span className='chat_time'>
-                            {format(message.createdAt)}
-                        </span>
-                    </div>
-                ))}
-                </div>
-
-                <div className="chat_foot">
-                    <div className="chat_foot_top">
-                        <div className="chat_foot_top_left">
-                        <InsertEmoticonIcon />
-                        <InsertDriveFileIcon />
-                        <FilterCenterFocusIcon />
-                        </div>
-
-                        <div className="chat_foot_top_right">
-                        <LocalPhoneIcon />
-                        <VideocamIcon />
 
                         </div>
 
